@@ -39,8 +39,7 @@ public class Checkout {
   }
 
   private static int calculateF(int fItems) {
-    fItems -= fItems / 2;
-    return fItems * 10;
+    return fItems / 3 * 20 + fItems % 3 * 10;
   }
 
   private static int calculateE(int eItems) {

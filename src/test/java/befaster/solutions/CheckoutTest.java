@@ -9,9 +9,22 @@ public class CheckoutTest {
 
 
   @Test
-  public void checkout_computes_prices() {
-    assertThat(Checkout.checkout("ABC"), equalTo());
-
+  public void checkout_computes_individual_prices() {
+    assertThat(Checkout.checkout("A"), equalTo(50));
+    assertThat(Checkout.checkout("B"), equalTo(30));
+    assertThat(Checkout.checkout("C"), equalTo(20));
+    assertThat(Checkout.checkout("D"), equalTo(15));
   }
 
+  @Test
+  public void check_computes_group_prices() {
+    assertThat(Checkout.checkout("ABCD"), equalTo(115));
+    assertThat(Checkout.checkout("ABCDABCD"), equalTo(230));
+    assertThat(Checkout.checkout("AABBCCDD"), equalTo(230));
+  }
+
+  @Test
+  public void check_applies_discounts() {
+    assertThat(Checkout.checkout("ABCDABCDA"), equalTo(260));
+  }
 }

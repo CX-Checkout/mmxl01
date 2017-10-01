@@ -17,15 +17,20 @@ public class CheckoutTest {
   }
 
   @Test
-  public void check_computes_group_prices() {
+  public void checkout_computes_group_prices() {
     assertThat(Checkout.checkout("ABCD"), equalTo(115));
     assertThat(Checkout.checkout("DCBA"), equalTo(115));
     assertThat(Checkout.checkout("AABCD"), equalTo(165));
   }
 
   @Test
-  public void check_applies_discounts() {
+  public void checkout_applies_discounts() {
     assertThat(Checkout.checkout("ABCDABCDA"), equalTo(245));
     assertThat(Checkout.checkout("AAABBCCDD"), equalTo(245));
+  }
+
+  @Test
+  public void checkout_returns_minus_one_for_illegal_output() {
+    assertThat(Checkout.checkout("ABCDF"), equalTo(-1));
   }
 }

@@ -97,7 +97,7 @@ public class CheckoutTest {
   public void checkout_buying_3_U_gives_1_U_for_Free() {
     assertThat(Checkout.checkout("UUU"), equalTo(120));
     assertThat(Checkout.checkout("UUUU"), equalTo(120));
-    assertThat(Checkout.checkout("FFFF"), equalTo(30));
-    assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
+    assertThat(Checkout.checkout("UUUUUUU"), equalTo(240));
+    assertThat(Checkout.checkout("UUUUUUUU"), equalTo(240));
   }
 }

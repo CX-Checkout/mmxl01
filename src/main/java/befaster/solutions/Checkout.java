@@ -1,5 +1,7 @@
 package befaster.solutions;
 
+import java.util.HashMap;
+
 public class Checkout {
 
   public static Integer checkout(String skus) {
@@ -9,7 +11,11 @@ public class Checkout {
     int dItems = 0;
     int eItems = 0;
     int fItems = 0;
+    HashMap<Character, Integer> itemCount = new HashMap<>();
     for (char c : skus.toCharArray()) {
+      if (isInvalid(c)) {
+        return -1;
+      }
       switch (c) {
         case 'A':
           aItems++;
@@ -36,6 +42,10 @@ public class Checkout {
 
     return calculateA(aItems) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems)
         + calculateE(eItems) + calculateF(fItems);
+  }
+
+  private static boolean isInvalid(char c) {
+    return c < 'A' || c > 'Z';
   }
 
   private static int calculateF(int fItems) {

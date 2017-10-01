@@ -17,12 +17,11 @@ public class Checkout {
       itemCount.put(c, ++count);
     }
 
-    return calculateA(itemCount) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems)
-        + calculateE(eItems) + calculateF(fItems);
+    return calculatePrice(itemCount);
   }
 
-  private static boolean isInvalid(char c) {
-    return c < 'A' || c > 'Z';
+  private static int calculatePrice(HashMap<Character, Integer> itemCount) {
+    
   }
 
   private static int calculateF(HashMap<Character, Integer> items) {
@@ -66,17 +65,21 @@ public class Checkout {
   }
 
   private static int calculateA(HashMap<Character, Integer> items) {
-    Integer aItems = items.get('A');
-    if (isNullOrZero(aItems)) {
+    Integer count = items.get('A');
+    if (isNullOrZero(count)) {
       return 0;
     }
-    int price = aItems / 5 * 200;
-    aItems = aItems % 5;
-    price += aItems / 3 * 130 + (aItems % 3) * 50;
+    int price = count / 5 * 200;
+    count = count % 5;
+    price += count / 3 * 130 + (count % 3) * 50;
     return price;
   }
 
   private static boolean isNullOrZero(Integer value) {
     return value == null || value == 0;
+  }
+
+  private static boolean isInvalid(char c) {
+    return c < 'A' || c > 'Z';
   }
 }

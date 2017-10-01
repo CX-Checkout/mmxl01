@@ -25,6 +25,10 @@ public class Checkout {
             }
         }
 
-        return
+        return calculateA(aItems) + calculateB(bItems) + calculateC(cItems) + calculateD(dItems);
+    }
+
+    private static int calculateA(int aItems) {
+        
     }
 }

@@ -59,6 +59,8 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("HHHHH"), equalTo(45));
     assertThat(Checkout.checkout("HHHHHHHHHH"), equalTo(80));
     assertThat(Checkout.checkout("KK"), equalTo(150));
+    assertThat(Checkout.checkout("PPPPP"), equalTo(200));
+    assertThat(Checkout.checkout("QQQ"), equalTo(80));
   }
 
   @Test
@@ -67,8 +69,14 @@ public class CheckoutTest {
   }
 
   @Test
+  public void checkout_applies_discount_to_Q_items_when_buying_R_items() {
+    assertThat(Checkout.checkout("RRRQ"), equalTo(150));
+  }
+
+  @Test
   public void checkout_applies_discount_to_M_items_when_buying_N_items() {
-    assertThat(Checkout.checkout("EEBB"), equalTo(110));
+    assertThat(Checkout.checkout("NNNM"), equalTo(120));
+    assertThat(Checkout.checkout("NNNNNNMM"), equalTo(240));
   }
 
   @Test
@@ -81,6 +89,14 @@ public class CheckoutTest {
   public void checkout_buying_2_F_gives_1_F_for_Free() {
     assertThat(Checkout.checkout("FFF"), equalTo(20));
     assertThat(Checkout.checkout("FF"), equalTo(20));
+    assertThat(Checkout.checkout("FFFF"), equalTo(30));
+    assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
+  }
+
+  @Test
+  public void checkout_buying_3_U_gives_1_U_for_Free() {
+    assertThat(Checkout.checkout("UUU"), equalTo(120));
+    assertThat(Checkout.checkout("UUUU"), equalTo(120));
     assertThat(Checkout.checkout("FFFF"), equalTo(30));
     assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
   }

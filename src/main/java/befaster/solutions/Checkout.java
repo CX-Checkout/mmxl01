@@ -47,7 +47,9 @@ public class Checkout {
   }
 
   private static int calculateB(int bItems, int eItems) {
-    bItems -= eItems / 2;
+    if (bItems > 0) {
+      bItems -= eItems / 2;
+    }
     return (bItems / 2) * 45 + (bItems % 2) * 30;
   }
 

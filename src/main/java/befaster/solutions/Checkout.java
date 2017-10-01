@@ -28,13 +28,19 @@ public class Checkout {
           break;
         case 'F':
           fItems++;
+          break;
         default:
           return -1;
       }
     }
 
     return calculateA(aItems) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems)
-        + calculateE(eItems);
+        + calculateE(eItems) + calculateF(fItems);
+  }
+
+  private static int calculateF(int fItems) {
+    fItems -= fItems / 2;
+    return fItems * 10;
   }
 
   private static int calculateE(int eItems) {

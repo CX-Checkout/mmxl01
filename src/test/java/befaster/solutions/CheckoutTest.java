@@ -33,6 +33,11 @@ public class CheckoutTest {
   }
 
   @Test
+  public void checkout_applies_discount_to_B_items_when_buying_E_items() {
+    assertThat(Checkout.checkout("EEBB"), equalTo(110));
+  }
+
+  @Test
   public void checkout_returns_minus_one_for_illegal_output() {
     assertThat(Checkout.checkout("ABCDF"), equalTo(-1));
     assertThat(Checkout.checkout("z"), equalTo(-1));

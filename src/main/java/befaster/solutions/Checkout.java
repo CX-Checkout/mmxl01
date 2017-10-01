@@ -21,6 +21,8 @@ public class Checkout {
         case 'D':
           dItems++;
           break;
+        case 'E':
+          eItems++;
         default:
           return -1;
       }
@@ -42,6 +44,9 @@ public class Checkout {
   }
 
   private static int calculateA(int aItems) {
-    return (aItems / 3) * 130 + (aItems % 3) * 50;
+    int price = aItems / 5 * 200;
+    aItems = aItems % 5;
+    price += aItems / 3 * 130 + (aItems % 3) * 50;
+    return price;
   }
 }

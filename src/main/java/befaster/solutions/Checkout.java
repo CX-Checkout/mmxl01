@@ -21,8 +21,14 @@ public class Checkout {
   }
 
   private static int calculatePrice(HashMap<Character, Integer> itemCount) {
-    
+    return calculateA(itemCount)
+        + calculateB(itemCount)
+        + getSimplePrice(itemCount, 'C', 20)
+        + getSimplePrice(itemCount, 'D', 15)
+        + getSimplePrice(itemCount, 'E', 40)
+        + calculateF(itemCount);
   }
+
 
   private static int calculateF(HashMap<Character, Integer> items) {
     Integer count = items.get('F');
@@ -30,18 +36,6 @@ public class Checkout {
       return 0;
     }
     return count / 3 * 20 + count % 3 * 10;
-  }
-
-  private static int calculateE(HashMap<Character, Integer> items) {
-    return getSimplePrice(items, 'E', 40);
-  }
-
-  private static int calculateD(HashMap<Character, Integer> items) {
-    return getSimplePrice(items, 'D', 15);
-  }
-
-  private static int calculateC(HashMap<Character, Integer> items) {
-    return getSimplePrice(items, 'C', 20);
   }
 
   private static int getSimplePrice(HashMap<Character, Integer> items, char ch, int basePrice) {

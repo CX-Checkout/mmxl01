@@ -30,6 +30,7 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("ABCDABCDA"), equalTo(245));
     assertThat(Checkout.checkout("AAABBCCDD"), equalTo(245));
     assertThat(Checkout.checkout("AAAAA"), equalTo(200));
+    assertThat(Checkout.checkout("AAAAAAAA"), equalTo(330));
   }
 
   @Test

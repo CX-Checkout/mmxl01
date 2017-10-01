@@ -7,6 +7,7 @@ public class Checkout {
     int bItems = 0;
     int cItems = 0;
     int dItems = 0;
+    int eItems = 0;
     for (char c : skus.toCharArray()) {
       switch (c) {
         case 'A':
@@ -23,12 +24,17 @@ public class Checkout {
           break;
         case 'E':
           eItems++;
+          break;
         default:
           return -1;
       }
     }
 
-    return calculateA(aItems) + calculateB(bItems) + calculateC(cItems) + calculateD(dItems);
+    return calculateA(aItems) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems) + calculateE(eItems);
+  }
+
+  private static int calculateE(int eItems) {
+    return 40 * eItems;
   }
 
   private static int calculateD(int dItems) {
@@ -39,7 +45,8 @@ public class Checkout {
     return 20 * cItems;
   }
 
-  private static int calculateB(int bItems) {
+  private static int calculateB(int bItems, int eItems) {
+    bItems -= eItems / 2;
     return (bItems / 2) * 45 + (bItems % 2) * 30;
   }
 

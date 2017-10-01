@@ -26,27 +26,31 @@ public class Checkout {
   }
 
   private static int calculateF(HashMap<Character, Integer> items) {
-    return fItems / 3 * 20 + fItems % 3 * 10;
+    Integer count = items.get('F');
+    if (isNullOrZero(count)) {
+      return 0;
+    }
+    return count / 3 * 20 + count % 3 * 10;
   }
 
   private static int calculateE(HashMap<Character, Integer> items) {
-    return 40 * eItems;
+    return getSimplePrice(items, 'E', 40);
   }
 
   private static int calculateD(HashMap<Character, Integer> items) {
-    Integer count = items.get('D');
-    if (isNullOrZero(count)) {
-      return 0;
-    }
-    return 15 * count;
+    return getSimplePrice(items, 'D', 15);
   }
 
   private static int calculateC(HashMap<Character, Integer> items) {
-    Integer count = items.get('C');
+    return getSimplePrice(items, 'C', 20);
+  }
+
+  private static int getSimplePrice(HashMap<Character, Integer> items, char ch, int basePrice) {
+    Integer count = items.get(ch);
     if (isNullOrZero(count)) {
       return 0;
     }
-    return 20 * count;
+    return basePrice * count;
   }
 
   private static int calculateB(HashMap<Character, Integer> items) {

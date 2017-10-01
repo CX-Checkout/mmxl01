@@ -23,6 +23,7 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("ABCD"), equalTo(115));
     assertThat(Checkout.checkout("DCBA"), equalTo(115));
     assertThat(Checkout.checkout("AABCD"), equalTo(165));
+    assertThat(Checkout.checkout("EE"), equalTo(80));
   }
 
   @Test

@@ -30,7 +30,8 @@ public class Checkout {
       }
     }
 
-    return calculateA(aItems) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems) + calculateE(eItems);
+    return calculateA(aItems) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems)
+        + calculateE(eItems);
   }
 
   private static int calculateE(int eItems) {
@@ -46,7 +47,9 @@ public class Checkout {
   }
 
   private static int calculateB(int bItems, int eItems) {
-    bItems -= eItems / 2;
+    if (eItems > 0) {
+      bItems -= eItems / 2;
+    }
     return (bItems / 2) * 45 + (bItems % 2) * 30;
   }
 

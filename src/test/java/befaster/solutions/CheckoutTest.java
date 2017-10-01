@@ -32,5 +32,6 @@ public class CheckoutTest {
   @Test
   public void checkout_returns_minus_one_for_illegal_output() {
     assertThat(Checkout.checkout("ABCDF"), equalTo(-1));
+    assertThat(Checkout.checkout("z"), equalTo(-1));
   }
 }

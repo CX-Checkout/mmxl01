@@ -36,6 +36,8 @@ public class Checkout {
         + calculateM(itemCount)
         + getSimplePrice(itemCount, 'O', 10)
         + calculateP(itemCount)
+        + calculateQ(itemCount)
+        + calculateR(itemCount)
 
   }
 

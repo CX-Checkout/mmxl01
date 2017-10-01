@@ -8,6 +8,7 @@ public class Checkout {
     int cItems = 0;
     int dItems = 0;
     int eItems = 0;
+    int fItems = 0;
     for (char c : skus.toCharArray()) {
       switch (c) {
         case 'A':
@@ -25,6 +26,8 @@ public class Checkout {
         case 'E':
           eItems++;
           break;
+        case 'F':
+          fItems++;
         default:
           return -1;
       }

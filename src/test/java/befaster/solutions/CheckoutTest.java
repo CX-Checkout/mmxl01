@@ -47,4 +47,12 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("ABCDF"), equalTo(-1));
     assertThat(Checkout.checkout("z"), equalTo(-1));
   }
+
+  @Test
+  public void checkout_buying_2_F_gives_1_F_for_Free() {
+    assertThat(Checkout.checkout("FFF"), equalTo(20));
+    assertThat(Checkout.checkout("FF"), equalTo(20));
+    assertThat(Checkout.checkout("FFFF"), equalTo(30));
+    assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
+  }
 }

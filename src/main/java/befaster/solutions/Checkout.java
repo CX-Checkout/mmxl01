@@ -25,25 +25,37 @@ public class Checkout {
     return c < 'A' || c > 'Z';
   }
 
-  private static int calculateF(int fItems) {
+  private static int calculateF(HashMap<Character, Integer> items) {
     return fItems / 3 * 20 + fItems % 3 * 10;
   }
 
-  private static int calculateE(int eItems) {
+  private static int calculateE(HashMap<Character, Integer> items) {
     return 40 * eItems;
   }
 
-  private static int calculateD(int dItems) {
-    return 15 * dItems;
+  private static int calculateD(HashMap<Character, Integer> items) {
+    Integer count = items.get('D');
+    if (isNullOrZero(count)) {
+      return 0;
+    }
+    return 15 * count;
   }
 
-  private static int calculateC(int cItems) {
-    return 20 * cItems;
+  private static int calculateC(HashMap<Character, Integer> items) {
+    Integer count = items.get('C');
+    if (isNullOrZero(count)) {
+      return 0;
+    }
+    return 20 * count;
   }
 
   private static int calculateB(HashMap<Character, Integer> items) {
-    Integer bI
-    if (bItems > 0) {
+    Integer bItems = items.get('B');
+    Integer eItems = items.get('E');
+    if (isNullOrZero(bItems)) {
+      return 0;
+    }
+    if (bItems > 0 && !isNullOrZero(eItems)) {
       bItems -= eItems / 2;
     }
     return (bItems / 2) * 45 + (bItems % 2) * 30;
@@ -51,12 +63,16 @@ public class Checkout {
 
   private static int calculateA(HashMap<Character, Integer> items) {
     Integer aItems = items.get('A');
-    if (aItems == null) {
+    if (isNullOrZero(aItems)) {
       return 0;
     }
     int price = aItems / 5 * 200;
     aItems = aItems % 5;
     price += aItems / 3 * 130 + (aItems % 3) * 50;
     return price;
+  }
+
+  private static boolean isNullOrZero(Integer value) {
+    return value == null || value == 0;
   }
 }

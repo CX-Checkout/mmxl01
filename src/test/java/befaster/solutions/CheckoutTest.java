@@ -15,6 +15,27 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("C"), equalTo(20));
     assertThat(Checkout.checkout("D"), equalTo(15));
     assertThat(Checkout.checkout("E"), equalTo(40));
+    assertThat(Checkout.checkout("F"), equalTo(10));
+    assertThat(Checkout.checkout("G"), equalTo(20));
+    assertThat(Checkout.checkout("H"), equalTo(10));
+    assertThat(Checkout.checkout("I"), equalTo(35));
+    assertThat(Checkout.checkout("J"), equalTo(60));
+    assertThat(Checkout.checkout("K"), equalTo(80));
+    assertThat(Checkout.checkout("L"), equalTo(90));
+    assertThat(Checkout.checkout("M"), equalTo(15));
+    assertThat(Checkout.checkout("N"), equalTo(40));
+    assertThat(Checkout.checkout("O"), equalTo(10));
+    assertThat(Checkout.checkout("P"), equalTo(50));
+    assertThat(Checkout.checkout("Q"), equalTo(30));
+    assertThat(Checkout.checkout("R"), equalTo(50));
+    assertThat(Checkout.checkout("S"), equalTo(30));
+    assertThat(Checkout.checkout("T"), equalTo(20));
+    assertThat(Checkout.checkout("U"), equalTo(40));
+    assertThat(Checkout.checkout("V"), equalTo(50));
+    assertThat(Checkout.checkout("W"), equalTo(20));
+    assertThat(Checkout.checkout("X"), equalTo(90));
+    assertThat(Checkout.checkout("Y"), equalTo(10));
+    assertThat(Checkout.checkout("Z"), equalTo(50));
   }
 
   @Test
@@ -35,10 +56,18 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("AAABBCCDD"), equalTo(245));
     assertThat(Checkout.checkout("AAAAA"), equalTo(200));
     assertThat(Checkout.checkout("AAAAAAAA"), equalTo(330));
+    assertThat(Checkout.checkout("HHHHH"), equalTo(45));
+    assertThat(Checkout.checkout("HHHHHHHHHH"), equalTo(80));
+    assertThat(Checkout.checkout("KK"), equalTo(150));
   }
 
   @Test
   public void checkout_applies_discount_to_B_items_when_buying_E_items() {
+    assertThat(Checkout.checkout("EEBB"), equalTo(110));
+  }
+
+  @Test
+  public void checkout_applies_discount_to_M_items_when_buying_N_items() {
     assertThat(Checkout.checkout("EEBB"), equalTo(110));
   }
 

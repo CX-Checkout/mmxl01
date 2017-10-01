@@ -26,7 +26,17 @@ public class Checkout {
         + getSimplePrice(itemCount, 'C', 20)
         + getSimplePrice(itemCount, 'D', 15)
         + getSimplePrice(itemCount, 'E', 40)
-        + calculateF(itemCount);
+        + calculateF(itemCount)
+        + getSimplePrice(itemCount, 'G', 20)
+        + calculateH(itemCount)
+        + getSimplePrice(itemCount, 'I', 35)
+        + getSimplePrice(itemCount, 'J', 60)
+        + calculateK(itemCount)
+        + getSimplePrice(itemCount, 'L', 90)
+        + calculateM(itemCount)
+        + getSimplePrice(itemCount, 'O', 10)
+        + calculateP(itemCount)
+
   }
 
 

@@ -5,42 +5,19 @@ import java.util.HashMap;
 public class Checkout {
 
   public static Integer checkout(String skus) {
-    int aItems = 0;
-    int bItems = 0;
-    int cItems = 0;
-    int dItems = 0;
-    int eItems = 0;
-    int fItems = 0;
     HashMap<Character, Integer> itemCount = new HashMap<>();
     for (char c : skus.toCharArray()) {
       if (isInvalid(c)) {
         return -1;
       }
-      switch (c) {
-        case 'A':
-          aItems++;
-          break;
-        case 'B':
-          bItems++;
-          break;
-        case 'C':
-          cItems++;
-          break;
-        case 'D':
-          dItems++;
-          break;
-        case 'E':
-          eItems++;
-          break;
-        case 'F':
-          fItems++;
-          break;
-        default:
-          return -1;
+      Integer count = itemCount.get(c);
+      if (count == null) {
+        count = 0;
       }
+      itemCount.put(c, ++count);
     }
 
-    return calculateA(aItems) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems)
+    return calculateA(itemCount) + calculateB(bItems, eItems) + calculateC(cItems) + calculateD(dItems)
         + calculateE(eItems) + calculateF(fItems);
   }
 
@@ -64,14 +41,19 @@ public class Checkout {
     return 20 * cItems;
   }
 
-  private static int calculateB(int bItems, int eItems) {
+  private static int calculateB(HashMap<Character, Integer> items) {
+    Integer bI
     if (bItems > 0) {
       bItems -= eItems / 2;
     }
     return (bItems / 2) * 45 + (bItems % 2) * 30;
   }
 
-  private static int calculateA(int aItems) {
+  private static int calculateA(HashMap<Character, Integer> items) {
+    Integer aItems = items.get('A');
+    if (aItems == null) {
+      return 0;
+    }
     int price = aItems / 5 * 200;
     aItems = aItems % 5;
     price += aItems / 3 * 130 + (aItems % 3) * 50;

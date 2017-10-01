@@ -14,6 +14,8 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("B"), equalTo(30));
     assertThat(Checkout.checkout("C"), equalTo(20));
     assertThat(Checkout.checkout("D"), equalTo(15));
+    assertThat(Checkout.checkout("E"), equalTo(40));
+
   }
 
   @Test
@@ -27,6 +29,7 @@ public class CheckoutTest {
   public void checkout_applies_discounts() {
     assertThat(Checkout.checkout("ABCDABCDA"), equalTo(245));
     assertThat(Checkout.checkout("AAABBCCDD"), equalTo(245));
+    assertThat(Checkout.checkout("AAAAA"), equalTo(200));
   }
 
   @Test

@@ -21,7 +21,7 @@ public class Checkout {
   }
 
   private static int calculatePrice(HashMap<Character, Integer> itemCount) {
-    return calculateA(itemCount)
+    return calculateMultiDiscount(itemCount, 'A', 50, 200, 5, 130, 3)
         + calculateB(itemCount)
         + getSimplePrice(itemCount, 'C', 20)
         + getSimplePrice(itemCount, 'D', 15)
@@ -41,7 +41,7 @@ public class Checkout {
         + getSimplePrice(itemCount, 'S', 30)
         + getSimplePrice(itemCount, 'T', 20)
         + calculateU(itemCount)
-        + calculateV(itemCount)
+        + calculateMultiDiscount(itemCount, 'V', 50, 130, 3, 90, 2)
         + getSimplePrice(itemCount, 'W', 20)
         + getSimplePrice(itemCount, 'X', 90)
         + getSimplePrice(itemCount, 'Y', 10)
@@ -83,26 +83,17 @@ public class Checkout {
     return (bItems / 2) * 45 + (bItems % 2) * 30;
   }
 
-  private static int calculateA(HashMap<Character, Integer> items) {
-    Integer count = items.get('A');
-    if (isNullOrZero(count)) {
-      return 0;
-    }
-    int price = count / 5 * 200;
-    count = count % 5;
-    price += count / 3 * 130 + (count % 3) * 50;
-    return price;
-  }
-
   private static int calculateMultiDiscount(HashMap<Character, Integer> items, char item,
-      int basePrice, int bigDiscountGroupPrice, int unitsForBigDiscount, int smallDiscountGroupPrice, int unitsForSmallDiscount) {
+      int basePrice, int bigDiscountGroupPrice, int unitsForBigDiscount,
+      int smallDiscountGroupPrice, int unitsForSmallDiscount) {
     Integer count = items.get(item);
     if (isNullOrZero(count)) {
       return 0;
     }
-    int price = count / unitsForBigDiscount * bigDiscountPrice;
+    int price = count / unitsForBigDiscount * bigDiscountGroupPrice;
     count = count % unitsForBigDiscount;
-    price += count / smallDiscountPrice * 130 + (count % 3) * 50;
+    price += count / unitsForSmallDiscount * smallDiscountGroupPrice
+        + (count % unitsForSmallDiscount) * basePrice;
     return price;
   }
 

@@ -26,7 +26,7 @@ public class Checkout {
         + getSimplePrice(itemCount, 'C', 20)
         + getSimplePrice(itemCount, 'D', 15)
         + getSimplePrice(itemCount, 'E', 40)
-        + calculateF(itemCount)
+        + calculatePriceWithOneFreeOffer(itemCount, 'F', 10, 2)
         + getSimplePrice(itemCount, 'G', 20)
         + calculateMultiDiscount(itemCount, 'H', 10, 80, 10, 45, 5)
         + getSimplePrice(itemCount, 'I', 35)
@@ -51,20 +51,14 @@ public class Checkout {
   }
 
 
-  private static int calculateF(HashMap<Character, Integer> items) {
-    Integer count = items.get('F');
-    if (isNullOrZero(count)) {
-      return 0;
-    }
-    return count / 3 * 20 + count % 3 * 10;
-  }
-
-  private static int calculatePriceWithOneFreeOffer(HashMap<Character, Integer> items, char item, int basePrice, int unitsToQuality) {
+  private static int calculatePriceWithOneFreeOffer(HashMap<Character, Integer> items, char item,
+      int basePrice, int unitsToQuality) {
     Integer count = items.get(item);
     if (isNullOrZero(count)) {
       return 0;
     }
-    return count / unitsToQuality * 20 + count % 3 * 10;
+    return count / (unitsToQuality + 1) * basePrice * unitsToQuality
+        + count % (unitsToQuality + 1) * basePrice;
 
   }
 
@@ -87,6 +81,8 @@ public class Checkout {
     }
     return (bItems / 2) * 45 + (bItems % 2) * 30;
   }
+
+  private static int calculateSingleDiscount(HashMap<Character, Integer> items, char item, int basePrice, )
 
   private static int calculateMultiDiscount(HashMap<Character, Integer> items, char item,
       int basePrice, int bigDiscountGroupPrice, int unitsForBigDiscount,

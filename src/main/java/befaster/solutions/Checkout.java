@@ -63,7 +63,7 @@ public class Checkout {
     while (itemsToDiscount > 0) {
       if (counts[currentItem] > 0) {
         int countAfterRemoval = itemsToDiscount < counts[currentItem] ? counts[currentItem] - itemsToDiscount : 0;
-        itemsToDiscount -= (counts[itemsToDiscount] - countAfterRemoval);
+        itemsToDiscount -= (counts[currentItem] - countAfterRemoval);
         counts[currentItem] = countAfterRemoval;
       }
       currentItem++;

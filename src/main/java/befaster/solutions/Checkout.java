@@ -58,7 +58,12 @@ public class Checkout {
     int itemsToDiscount = total - (total % unitsToQualify);
     int currentItem = 0;
     while (itemsToDiscount > 0) {
-      
+      if (counts[currentItem] > 0) {
+        int countAfterRemoval = itemsToDiscount < counts[currentItem] ? counts[currentItem] - itemsToDiscount : 0;
+        itemsToDiscount -= (counts[itemsToDiscount] - countAfterRemoval);
+        counts[currentItem] = countAfterRemoval;
+        currentItem++;
+      }
     }
   }
 

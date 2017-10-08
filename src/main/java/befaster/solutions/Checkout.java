@@ -71,25 +71,31 @@ public class Checkout {
   }
 
   private static int calculateB(HashMap<Character, Integer> items) {
-    Integer bItems = items.get('B');
-    Integer eItems = items.get('E');
-    if (isNullOrZero(bItems)) {
-      return 0;
-    }
-    if (bItems > 0 && !isNullOrZero(eItems)) {
-      bItems -= eItems / 2;
-    }
-    return (bItems / 2) * 45 + (bItems % 2) * 30;
+//    Integer bItems = items.get('B');
+//    Integer eItems = items.get('E');
+//    if (isNullOrZero(bItems)) {
+//      return 0;
+//    }
+//    if (bItems > 0 && !isNullOrZero(eItems)) {
+//      bItems -= eItems / 2;
+//    }
+//    return (bItems / 2) * 45 + (bItems % 2) * 30;
+
+    calculatePriceAffectedByOtherItemAndDiscount(items, 'B', )
   }
 
   private static int calculatePriceAffectedByOtherItem(HashMap<Character, Integer> items,
       char itemToCalculate, int basePrice, char otherItem, int otherUnitsForDiscount) {
-    return applyDiscountFromOtherUnit(items, itemToCalculate, otherItem, otherUnitsForDiscount) * basePrice;
+    return applyDiscountFromOtherUnit(items, itemToCalculate, otherItem, otherUnitsForDiscount)
+        * basePrice;
   }
 
   private static int calculatePriceAffectedByOtherItemAndDiscount(HashMap<Character, Integer> items,
-      char itemToCalculate, int basePrice, char otherItem, int otherUnitsForDiscount) {
-    return applyDiscountFromOtherUnit(items, itemToCalculate, otherItem, otherUnitsForDiscount) * basePrice;
+      char itemToCalculate, int basePrice, int discountGroupPrice, int unitsForDiscount,
+      char otherItem, int otherUnitsForDiscount) {
+    int count = applyDiscountFromOtherUnit(items, itemToCalculate, otherItem,
+        otherUnitsForDiscount);
+    return count / unitsForDiscount * discountGroupPrice + (count % unitsForDiscount) * basePrice;
   }
 
   private static int applyDiscountFromOtherUnit(HashMap<Character, Integer> items,
@@ -111,7 +117,7 @@ public class Checkout {
     if (isNullOrZero(count)) {
       return 0;
     }
-    return count / unitsForDiscount * 45 + (count % unitsForDiscount) * basePrice;
+    return count / unitsForDiscount * discountGroupPrice + (count % unitsForDiscount) * basePrice;
   }
 
   private static int calculateMultiDiscount(HashMap<Character, Integer> items, char item,

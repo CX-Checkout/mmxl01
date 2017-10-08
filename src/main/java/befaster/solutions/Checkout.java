@@ -43,13 +43,11 @@ public class Checkout {
         + getPriceWithMultiDiscount(itemCount, 'V', 50, 130, 3, 90, 2)
         + getSimplePrice(itemCount, 'W', 20)
 
-        + getMultiGroupPrice(itemCount, new char[]{ 'Z', 'S', 'T', 'Y', 'X'}, new int[]{21, 20, 20, 20, 17}, 45, 3)
-        + getSimplePrice(itemCount, 'S', 30)
-        + getSimplePrice(itemCount, 'T', 20)
-        + getSimplePrice(itemCount, 'X', 90)
-        + getSimplePrice(itemCount, 'Y', 10)
-        + getSimplePrice(itemCount, 'Z', 50);
+        + getMultiGroupPrice(itemCount, new char[]{ 'Z', 'S', 'T', 'Y', 'X'}, new int[]{21, 20, 20, 20, 17}, 45, 3);
+  }
 
+  private static int getMultiGroupPrice(HashMap<Character, Integer> itemCount, char[] items,
+      int[] basePrices, int discountGroupPrice, int unitsToQualify) {
 
   }
 
@@ -64,12 +62,8 @@ public class Checkout {
 
   }
 
-  private static int getSimplePrice(HashMap<Character, Integer> items, char ch, int basePrice) {
-    Integer count = items.get(ch);
-    if (isNullOrZero(count)) {
-      return 0;
-    }
-    return basePrice * count;
+  private static int getSimplePrice(HashMap<Character, Integer> items, char item, int basePrice) {
+    return basePrice * safeGetCount(items, item);
   }
 
   private static int getPriceAffectedByOtherItem(HashMap<Character, Integer> items,
@@ -101,20 +95,14 @@ public class Checkout {
 
   private static int getPriceWithSingleDiscount(HashMap<Character, Integer> items, char item,
       int basePrice, int discountGroupPrice, int unitsForDiscount) {
-    Integer count = items.get(item);
-    if (isNullOrZero(count)) {
-      return 0;
-    }
+    int count = safeGetCount(items, item);
     return count / unitsForDiscount * discountGroupPrice + (count % unitsForDiscount) * basePrice;
   }
 
   private static int getPriceWithMultiDiscount(HashMap<Character, Integer> items, char item,
       int basePrice, int bigDiscountGroupPrice, int unitsForBigDiscount,
       int smallDiscountGroupPrice, int unitsForSmallDiscount) {
-    Integer count = items.get(item);
-    if (isNullOrZero(count)) {
-      return 0;
-    }
+    int count = safeGetCount(items, item);
     int price = count / unitsForBigDiscount * bigDiscountGroupPrice;
     count = count % unitsForBigDiscount;
     price += count / unitsForSmallDiscount * smallDiscountGroupPrice
@@ -128,5 +116,13 @@ public class Checkout {
 
   private static boolean isInvalid(char c) {
     return c < 'A' || c > 'Z';
+  }
+
+  private static int safeGetCount(HashMap<Character, Integer> items, char item) {
+    Integer count = items.get(item);
+    if (isNullOrZero(count)) {
+      return 0;
+    }
+    return count;
   }
 }

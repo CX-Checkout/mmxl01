@@ -31,11 +31,12 @@ public class Checkout {
         + getPriceWithMultiDiscount(itemCount, 'H', 10, 80, 10, 45, 5)
         + getSimplePrice(itemCount, 'I', 35)
         + getSimplePrice(itemCount, 'J', 60)
-        + calculateSingleDiscount(itemCount, 'K', 80, 150, 2)
+        + getPriceWithSingleDiscount(itemCount, 'K', 80, 150, 2)
         + getSimplePrice(itemCount, 'L', 90)
-        + calculatePriceAffectedByOtherItem(itemCount, 'M', 15, 'N', 3)
+        + getPriceAffectedByOtherItem(itemCount, 'M', 15, 'N', 3)
+        + getSimplePrice(itemCount, 'N', 40)
         + getSimplePrice(itemCount, 'O', 10)
-        + calculateSingleDiscount(itemCount, 'P', 50, 200, 5)
+        + getPriceWithSingleDiscount(itemCount, 'P', 50, 200, 5)
         + getPriceAffectedByOtherItemAndDiscount(itemCount, 'Q', 30, 80, 3, 'R', 3)
         + getSimplePrice(itemCount, 'R', 50)
         + getSimplePrice(itemCount, 'S', 30)
@@ -49,7 +50,6 @@ public class Checkout {
 
 
   }
-
 
   private static int getPriceWithOneFreeOffer(HashMap<Character, Integer> items, char item,
       int basePrice, int unitsToQuality) {
@@ -70,7 +70,7 @@ public class Checkout {
     return basePrice * count;
   }
 
-  private static int calculatePriceAffectedByOtherItem(HashMap<Character, Integer> items,
+  private static int getPriceAffectedByOtherItem(HashMap<Character, Integer> items,
       char itemToCalculate, int basePrice, char otherItem, int otherUnitsForDiscount) {
     return applyDiscountFromOtherUnit(items, itemToCalculate, otherItem, otherUnitsForDiscount)
         * basePrice;
@@ -97,7 +97,7 @@ public class Checkout {
     return itemCount;
   }
 
-  private static int calculateSingleDiscount(HashMap<Character, Integer> items, char item,
+  private static int getPriceWithSingleDiscount(HashMap<Character, Integer> items, char item,
       int basePrice, int discountGroupPrice, int unitsForDiscount) {
     Integer count = items.get(item);
     if (isNullOrZero(count)) {

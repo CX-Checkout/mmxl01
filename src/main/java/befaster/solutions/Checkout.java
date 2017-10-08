@@ -38,6 +38,15 @@ public class Checkout {
         + calculateP(itemCount)
         + calculateQ(itemCount)
         + calculateR(itemCount)
+        + getSimplePrice(itemCount, 'S', 30)
+        + getSimplePrice(itemCount, 'T', 20)
+        + calculateU(itemCount)
+        + calculateV(itemCount)
+        + getSimplePrice(itemCount, 'W', 20)
+        + getSimplePrice(itemCount, 'X', 90)
+        + getSimplePrice(itemCount, 'Y', 10)
+        + getSimplePrice(itemCount, 'Z', 50);
+
 
   }
 

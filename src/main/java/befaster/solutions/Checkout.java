@@ -48,6 +48,7 @@ public class Checkout {
 
   private static int getMultiGroupPrice(HashMap<Character, Integer> itemCount, char[] items,
       int[] basePrices, int discountGroupPrice, int unitsToQualify) {
+
     int[] counts = new int[items.length];
     int total = 0;
     for (int i = 0; i < items.length; i++) {
@@ -55,17 +56,17 @@ public class Checkout {
       total += counts[i];
     }
 
-    int itemsToDiscount = total - (total % unitsToQualify);
+    int itemsToDiscount = total > unitsToQualify ? total - (total % unitsToQualify) : 0;
     int price = itemsToDiscount / unitsToQualify * discountGroupPrice;
 
     int currentItem = 0;
-    while (itemsToDiscount > 0) {
+    while (itemsToDiscount > 0 && currentItem < items.length) {
       if (counts[currentItem] > 0) {
         int countAfterRemoval = itemsToDiscount < counts[currentItem] ? counts[currentItem] - itemsToDiscount : 0;
         itemsToDiscount -= (counts[itemsToDiscount] - countAfterRemoval);
         counts[currentItem] = countAfterRemoval;
-        currentItem++;
       }
+      currentItem++;
     }
 
     for (int i = 0; i < items.length; i++) {

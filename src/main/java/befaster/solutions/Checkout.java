@@ -50,6 +50,10 @@ public class Checkout {
 
   }
 
+  private static int calculateH(HashMap<Character, Integer> itemCount) {
+    return 0;
+  }
+
 
   private static int calculateF(HashMap<Character, Integer> items) {
     Integer count = items.get('F');
@@ -87,6 +91,18 @@ public class Checkout {
     int price = count / 5 * 200;
     count = count % 5;
     price += count / 3 * 130 + (count % 3) * 50;
+    return price;
+  }
+
+  private static int calculateMultiDiscount(HashMap<Character, Integer> items, char item,
+      int basePrice, int bigDiscountGroupPrice, int unitsForBigDiscount, int smallDiscountGroupPrice, int unitsForSmallDiscount) {
+    Integer count = items.get(item);
+    if (isNullOrZero(count)) {
+      return 0;
+    }
+    int price = count / unitsForBigDiscount * bigDiscountPrice;
+    count = count % unitsForBigDiscount;
+    price += count / smallDiscountPrice * 130 + (count % 3) * 50;
     return price;
   }
 

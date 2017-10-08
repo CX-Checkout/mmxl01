@@ -51,7 +51,7 @@ public class CheckoutTest {
   }
 
   @Test
-  public void checkout_applies_discounts() {
+  public void checkout_applies_simple_discounts() {
     assertThat(Checkout.checkout("ABCDABCDA"), equalTo(245));
     assertThat(Checkout.checkout("AAABBCCDD"), equalTo(245));
     assertThat(Checkout.checkout("AAAAA"), equalTo(200));

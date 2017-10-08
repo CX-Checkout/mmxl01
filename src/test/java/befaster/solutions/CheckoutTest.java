@@ -61,6 +61,7 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("KK"), equalTo(150));
     assertThat(Checkout.checkout("PPPPP"), equalTo(200));
     assertThat(Checkout.checkout("QQQ"), equalTo(80));
+    assertThat(Checkout.checkout("VVV"), equalTo(130));
   }
 
   @Test

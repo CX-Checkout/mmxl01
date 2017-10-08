@@ -36,11 +36,11 @@ public class Checkout {
         + calculateM(itemCount)
         + getSimplePrice(itemCount, 'O', 10)
         + calculateSingleDiscount(itemCount, 'P', 50, 200, 5)
-        + calculateSingleDiscount(itemCount, 'Q', 30, 200, 5);
+        + calculateSingleDiscount(itemCount, 'Q', 30, 80, 3);
         + calculateR(itemCount)
         + getSimplePrice(itemCount, 'S', 30)
         + getSimplePrice(itemCount, 'T', 20)
-        + calculateU(itemCount)
+        + calculatePriceWithOneFreeOffer(itemCount, 'U', 40, 3)
         + calculateMultiDiscount(itemCount, 'V', 50, 130, 3, 90, 2)
         + getSimplePrice(itemCount, 'W', 20)
         + getSimplePrice(itemCount, 'X', 90)
@@ -80,6 +80,10 @@ public class Checkout {
       bItems -= eItems / 2;
     }
     return (bItems / 2) * 45 + (bItems % 2) * 30;
+  }
+
+  private static int calculatePriceAffectedByOtherItem(HashMap<Character, Integer> items, char itemToCalculate, int basePrice, char itemWithDiscount, int unitsForDiscount) {
+    
   }
 
   private static int calculateSingleDiscount(HashMap<Character, Integer> items, char item,

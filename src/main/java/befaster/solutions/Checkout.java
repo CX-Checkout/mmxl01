@@ -84,6 +84,16 @@ public class Checkout {
 
   private static int calculatePriceAffectedByOtherItem(HashMap<Character, Integer> items,
       char itemToCalculate, int basePrice, char otherItem, int otherUnitsForDiscount) {
+    return applyDiscountFromOtherUnit(items, itemToCalculate, otherItem, otherUnitsForDiscount) * basePrice;
+  }
+
+  private static int calculatePriceAffectedByOtherItemAndDiscount(HashMap<Character, Integer> items,
+      char itemToCalculate, int basePrice, char otherItem, int otherUnitsForDiscount) {
+    return applyDiscountFromOtherUnit(items, itemToCalculate, otherItem, otherUnitsForDiscount) * basePrice;
+  }
+
+  private static int applyDiscountFromOtherUnit(HashMap<Character, Integer> items,
+      char itemToCalculate, char otherItem, int otherUnitsForDiscount) {
     Integer itemCount = items.get(itemToCalculate);
     Integer itemWithDiscountCount = items.get(otherItem);
     if (isNullOrZero(itemCount)) {
@@ -92,8 +102,7 @@ public class Checkout {
     if (itemCount > 0 && !isNullOrZero(itemWithDiscountCount)) {
       itemCount -= itemWithDiscountCount / otherUnitsForDiscount;
     }
-
-    return itemCount * basePrice;
+    return itemCount;
   }
 
   private static int calculateSingleDiscount(HashMap<Character, Integer> items, char item,

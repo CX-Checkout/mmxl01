@@ -101,4 +101,15 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("UUUUUUU"), equalTo(240));
     assertThat(Checkout.checkout("UUUUUUUU"), equalTo(240));
   }
+
+  @Test
+  public void checkount_applies_multi_item_group_discount() {
+    assertThat(Checkout.checkout("STX"), equalTo(45));
+    assertThat(Checkout.checkout("TXY"), equalTo(45));
+    assertThat(Checkout.checkout("XYZ"), equalTo(45));
+    assertThat(Checkout.checkout("SYZ"), equalTo(45));
+    assertThat(Checkout.checkout("STXYZ"), equalTo(82));
+    assertThat(Checkout.checkout("STXZ"), equalTo(62));
+
+  }
 }

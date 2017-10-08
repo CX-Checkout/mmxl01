@@ -39,11 +39,13 @@ public class Checkout {
         + getPriceWithSingleDiscount(itemCount, 'P', 50, 200, 5)
         + getPriceAffectedByOtherItemAndDiscount(itemCount, 'Q', 30, 80, 3, 'R', 3)
         + getSimplePrice(itemCount, 'R', 50)
-        + getSimplePrice(itemCount, 'S', 30)
-        + getSimplePrice(itemCount, 'T', 20)
         + getPriceWithOneFreeOffer(itemCount, 'U', 40, 3)
         + getPriceWithMultiDiscount(itemCount, 'V', 50, 130, 3, 90, 2)
         + getSimplePrice(itemCount, 'W', 20)
+
+        + getMultiGroupPrice(itemCount, new char[]{ 'Z', 'S', 'T', 'Y', 'X'}, new int[]{21, 20, 20, 20, 17}, 45, 3)
+        + getSimplePrice(itemCount, 'S', 30)
+        + getSimplePrice(itemCount, 'T', 20)
         + getSimplePrice(itemCount, 'X', 90)
         + getSimplePrice(itemCount, 'Y', 10)
         + getSimplePrice(itemCount, 'Z', 50);

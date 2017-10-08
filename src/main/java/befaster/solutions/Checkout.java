@@ -56,7 +56,7 @@ public class Checkout {
       total += counts[i];
     }
 
-    int itemsToDiscount = total > unitsToQualify ? total - (total % unitsToQualify) : 0;
+    int itemsToDiscount = total >= unitsToQualify ? total - (total % unitsToQualify) : 0;
     int price = itemsToDiscount / unitsToQualify * discountGroupPrice;
 
     int currentItem = 0;
@@ -70,7 +70,7 @@ public class Checkout {
     }
 
     for (int i = 0; i < items.length; i++) {
-      price += counts[currentItem] * basePrices[currentItem];
+      price += counts[i] * basePrices[i];
     }
 
     return price;

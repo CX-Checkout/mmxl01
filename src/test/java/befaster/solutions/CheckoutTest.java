@@ -34,7 +34,7 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("S"), equalTo(20));
     assertThat(Checkout.checkout("T"), equalTo(20));
     assertThat(Checkout.checkout("X"), equalTo(17));
-    assertThat(Checkout.checkout("Y"), equalTo(10));
+    assertThat(Checkout.checkout("Y"), equalTo(20));
     assertThat(Checkout.checkout("Z"), equalTo(21));
   }
 

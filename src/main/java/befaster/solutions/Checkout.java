@@ -31,7 +31,7 @@ public class Checkout {
         + getPriceWithMultiDiscount(itemCount, 'H', 10, 80, 10, 45, 5)
         + getSimplePrice(itemCount, 'I', 35)
         + getSimplePrice(itemCount, 'J', 60)
-        + getPriceWithSingleDiscount(itemCount, 'K', 70, 150, 2)
+        + getPriceWithSingleDiscount(itemCount, 'K', 70, 120, 2)
         + getSimplePrice(itemCount, 'L', 90)
         + getPriceAffectedByOtherItem(itemCount, 'M', 15, 'N', 3)
         + getSimplePrice(itemCount, 'N', 40)

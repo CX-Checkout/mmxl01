@@ -60,7 +60,7 @@ public class Checkout {
     int price = itemsToDiscount / unitsToQualify * discountGroupPrice;
 
     int currentItem = 0;
-    while (itemsToDiscount > 0 && currentItem < items.length) {
+    while (itemsToDiscount > 0) {
       if (counts[currentItem] > 0) {
         int countAfterRemoval = itemsToDiscount < counts[currentItem] ? counts[currentItem] - itemsToDiscount : 0;
         itemsToDiscount -= (counts[itemsToDiscount] - countAfterRemoval);

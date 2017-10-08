@@ -28,11 +28,11 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("P"), equalTo(50));
     assertThat(Checkout.checkout("Q"), equalTo(30));
     assertThat(Checkout.checkout("R"), equalTo(50));
-    assertThat(Checkout.checkout("S"), equalTo(20));
-    assertThat(Checkout.checkout("T"), equalTo(20));
     assertThat(Checkout.checkout("U"), equalTo(40));
     assertThat(Checkout.checkout("V"), equalTo(50));
     assertThat(Checkout.checkout("W"), equalTo(20));
+    assertThat(Checkout.checkout("S"), equalTo(20));
+    assertThat(Checkout.checkout("T"), equalTo(20));
     assertThat(Checkout.checkout("X"), equalTo(17));
     assertThat(Checkout.checkout("Y"), equalTo(10));
     assertThat(Checkout.checkout("Z"), equalTo(21));
@@ -109,6 +109,7 @@ public class CheckoutTest {
     assertThat(Checkout.checkout("XYZ"), equalTo(45));
     assertThat(Checkout.checkout("SYZ"), equalTo(45));
     assertThat(Checkout.checkout("STXYZ"), equalTo(82));
+    assertThat(Checkout.checkout("STXYZS"), equalTo(90));
     assertThat(Checkout.checkout("STXZ"), equalTo(62));
 
   }

@@ -56,6 +56,8 @@ public class Checkout {
     }
 
     int itemsToDiscount = total - (total % unitsToQualify);
+    int price = itemsToDiscount / unitsToQualify * discountGroupPrice;
+
     int currentItem = 0;
     while (itemsToDiscount > 0) {
       if (counts[currentItem] > 0) {
@@ -65,6 +67,12 @@ public class Checkout {
         currentItem++;
       }
     }
+
+    for (int i = 0; i < items.length; i++) {
+      price += counts[currentItem] * basePrices[currentItem];
+    }
+
+    return price;
   }
 
   private static int getPriceWithOneFreeOffer(HashMap<Character, Integer> items, char item,
